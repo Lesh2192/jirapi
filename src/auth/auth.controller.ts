@@ -19,6 +19,7 @@ export class AuthController {
 
   @Post('register')
   async register(@Body() body: { username: string; password: string }) {
+    console.log('Register endpoint called', body);
     return this.authService.register(body.username, body.password);
   }
 }
