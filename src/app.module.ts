@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 import { ProjectsModule } from './projects/project.module';
 import { TasksModule } from './tasks/task.module';
-import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -11,12 +11,12 @@ import { UsersModule } from './users/users.module';
       type: 'sqlite',
       database: 'db.sqlite',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
+      synchronize: true, // Not recommended for production
     }),
+    UsersModule,
+    AuthModule,
     ProjectsModule,
     TasksModule,
-    AuthModule,
-    UsersModule,
   ],
 })
 export class AppModule {}
